@@ -86,6 +86,7 @@ ORDER BY 2,3
 
  SELECT dea.continent,dea.location,dea.date,dea.population,vac.new_vaccinations,SUM(CONVERT(int, vac.new_vaccinations )) OVER (partition by dea.location ORDER BY dea.location,dea.date) as RollingPeopleVaccinated
 FROM PortfolioProject..covidDeaths$ dea
+JOIN PortfolioProject..covidVaccinations$ vac
 ON dea.location=vac.location
 and dea.date=vac.date
 Where dea.continent is not null
